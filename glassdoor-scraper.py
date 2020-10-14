@@ -1,3 +1,10 @@
+'''
+Web scraper to get the salaries of Software Engineers using Glassdoor website.
+Change the num_requests variable as per how many values you want. One request gives
+20 values. Note that the website will give occasional errors because we are sending 
+continuous requests.
+'''
+
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import pandas as pd
@@ -5,6 +12,7 @@ import csv
 
 url = "https://www.glassdoor.com/Salaries/software-engineer-salary-SRCH_KO0,17.htm"
 all_salaries = []
+num_requests = 200
 
 def get_soup(url):
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -40,7 +48,7 @@ def get_url_and_salaries_list(url, writer):
 writer = open("sample_salaries_one.csv", "w")
 writer.write("Salary\n")
 
-for i in range(200):
+for i in range(num_requests):
     print("Request number: ", i)
     next_url = get_url_and_salaries_list(url, writer)
     url = next_url
