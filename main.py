@@ -31,13 +31,16 @@ def get_url_and_salaries_list(url, writer):
     next_url = find_next_page_url(soup)
     salaries_list = find_all_salaries(soup) 
     for salary in salaries_list:
+        salary_split = salary.split(",")
+        salary  = "".join(salary_split)
+        salary = salary[1:]
         writer.write(salary+"\n")
     return next_url
 
 writer = open("sample_salaries_one.csv", "w")
 writer.write("Salary\n")
 
-for i in range(500):
+for i in range(200):
     print("Request number: ", i)
     next_url = get_url_and_salaries_list(url, writer)
     url = next_url
