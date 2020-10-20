@@ -8,10 +8,8 @@ continuous requests.
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import pandas as pd
-import csv
 
 url = "https://www.glassdoor.com/Salaries/software-engineer-salary-SRCH_KO0,17.htm"
-all_salaries = []
 num_requests = 200
 
 def get_soup(url):
